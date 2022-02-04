@@ -111,3 +111,14 @@ print(stack)
 popped_value = stack.pop()
 print("Popped value:", popped_value)
 print(stack)
+
+
+# Extras: Literals
+
+from typing import Literal
+
+def http_request(method: Literal['GET', 'POST', 'PUT'], url: str) -> None:
+    ...
+
+http_request('GET', 'https://api.example.com')
+http_request('PSOT', 'https://api.example.com')  # Typo!

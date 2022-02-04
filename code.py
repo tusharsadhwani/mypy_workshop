@@ -107,3 +107,12 @@
 # popped_value = stack.pop()
 # print("Popped value:", popped_value)
 # print(stack)
+
+
+# Extras: Literals
+
+# def http_request(method, url):
+#     ...
+
+# http_request('GET', 'https://api.example.com')
+# http_request('PSOT', 'https://api.example.com')  # Typo!
