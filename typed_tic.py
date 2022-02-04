@@ -2,8 +2,8 @@
 import sys
 from typing import Literal
 
-X, O, BLANK = 'x', 'o', ' '
-BoardChar = Literal['x', 'o', ' ']
+Player = Literal['x', 'o']
+Board = list[Player | Literal[' ']]
 
 BOARD_STR = '''
  {} | {} | {} 
@@ -24,7 +24,7 @@ def main() -> None:
 
     player_1, player_2 = choose_players()
 
-    board = [BLANK] * 9
+    board: Board = [' '] * 9
 
     while True:
         try:
@@ -49,7 +49,7 @@ def print_board_positions() -> None:
     print(BOARD_STR.format(*positions))
 
 
-def choose_players() -> tuple[BoardChar, BoardChar]:
+def choose_players() -> tuple[Player, Player]:
     """Chooses the symbols for each player"""
     while True:
         try:
@@ -59,16 +59,16 @@ def choose_players() -> tuple[BoardChar, BoardChar]:
 
         input_string = input_string.lower()
 
-        if input_string == X:
-            return X, O
+        if input_string == 'x':
+            return 'x', 'o'
 
-        if input_string == O:
-            return O, X
+        if input_string == 'o':
+            return 'o', 'x'
 
         print('Try again.')
 
 
-def play_turn(player: BoardChar, board: list[str]) -> None:
+def play_turn(player: Player, board: Board) -> None:
     """Plays one turn of the game, and throws on game over"""
     print_board(board)
 
@@ -85,12 +85,12 @@ def play_turn(player: BoardChar, board: list[str]) -> None:
         raise GameOver
 
 
-def print_board(board: list[str]) -> None:
+def print_board(board: Board) -> None:
     """Prints the board"""
     print(BOARD_STR.format(*board))
 
 
-def player_input(player_char: BoardChar, board: list[str]) -> None:
+def player_input(player_char: Player, board: Board) -> None:
     """Takes a position input from the player"""
     while True:
         try:
@@ -108,7 +108,7 @@ def player_input(player_char: BoardChar, board: list[str]) -> None:
             print(f'Choose a value between 1 and {len(board)}.')
             continue
 
-        if board[position] != BLANK:
+        if board[position] != ' ':
             print('Choose an empty cell.')
             continue
 
@@ -116,7 +116,7 @@ def player_input(player_char: BoardChar, board: list[str]) -> None:
         break
 
 
-def check_win(char: BoardChar, board: list[str]) -> bool:
+def check_win(char: Player, board: Board) -> bool:
     """Checks if a player has won the game"""
     rows = (
         (0, 1, 2),
@@ -142,9 +142,9 @@ def check_win(char: BoardChar, board: list[str]) -> bool:
     return False
 
 
-def check_tie(board: list[str]) -> bool:
+def check_tie(board: Board) -> bool:
     """Checks if the game was a tie"""
-    return all(char != BLANK for char in board)
+    return all(char != ' ' for char in board)
 
 
 if __name__ == '__main__':
