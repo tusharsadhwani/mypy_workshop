@@ -15,11 +15,10 @@ BOARD_STR = '''
 
 
 class GameOver(Exception):
-    """Raised when the game ends"""
+    ...
 
 
 def main() -> None:
-    """Runs Tic Tac Toe"""
     print_instructions()
 
     player_1, player_2 = choose_players()
@@ -35,7 +34,6 @@ def main() -> None:
 
 
 def print_instructions() -> None:
-    """Print instructions on game start"""
     print(
         'Welcome to Tic Tac Toe.\n'
         'Board positions are as follows:'
@@ -44,13 +42,11 @@ def print_instructions() -> None:
 
 
 def print_board_positions() -> None:
-    """Prints the board positions"""
     positions = range(1, 9+1)
     print(BOARD_STR.format(*positions))
 
 
 def choose_players() -> tuple[Player, Player]:
-    """Chooses the symbols for each player"""
     while True:
         try:
             input_string = input("Choose Player 1 symbol ('x' or 'o'): ")
@@ -69,7 +65,6 @@ def choose_players() -> tuple[Player, Player]:
 
 
 def play_turn(player: Player, board: Board) -> None:
-    """Plays one turn of the game, and throws on game over"""
     print_board(board)
 
     player_input(player, board)
@@ -91,7 +86,6 @@ def print_board(board: Board) -> None:
 
 
 def player_input(player_char: Player, board: Board) -> None:
-    """Takes a position input from the player"""
     while True:
         try:
             position_input = input(f'{player_char}> ')
@@ -117,7 +111,6 @@ def player_input(player_char: Player, board: Board) -> None:
 
 
 def check_win(char: Player, board: Board) -> bool:
-    """Checks if a player has won the game"""
     rows = (
         (0, 1, 2),
         (3, 4, 5),
@@ -143,7 +136,6 @@ def check_win(char: Player, board: Board) -> bool:
 
 
 def check_tie(board: Board) -> bool:
-    """Checks if the game was a tie"""
     return all(char != ' ' for char in board)
 
 
