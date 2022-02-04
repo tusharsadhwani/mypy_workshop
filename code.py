@@ -81,29 +81,29 @@
 
 # 5. Classes
 
-class Stack:
-    def __init__(self):
-        self._values = []
+# class Stack:
+#     def __init__(self):
+#         self._values = []
 
-    def __repr__(self):
-        return f'Stack{self._values!r}'
+#     def __repr__(self):
+#         return f'Stack{self._values!r}'
 
-    def push(self, value):
-        self._values.append(value)
+#     def push(self, value):
+#         self._values.append(value)
 
-    def pop(self):
-        if len(self._values) == 0:
-            raise RuntimeError('Underflow!')
+#     def pop(self):
+#         if len(self._values) == 0:
+#             raise RuntimeError('Underflow!')
 
-        return self._values.pop()
+#         return self._values.pop()
 
-stack = Stack()
-print(stack)
+# stack = Stack()
+# print(stack)
 
-stack.push(2)
-stack.push(10)
-print(stack)
+# stack.push(2)
+# stack.push(10)
+# print(stack)
 
-popped_value = stack.pop()
-print("Popped value:", popped_value)
-print(stack)
+# popped_value = stack.pop()
+# print("Popped value:", popped_value)
+# print(stack)
