@@ -1,6 +1,5 @@
 # 1. A regular Python function
 
-
 def double(n: int) -> int:
     return n * 2
 
